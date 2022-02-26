@@ -9,6 +9,6 @@ Binding: addin.view.stata.data
 Interactive: false
 
 Name: Run do file
-Description: Runs a do file that is active in the RStudio editor
+Description: Runs do file that is active in the RStudio editor
 Binding: addin.view.stata.data
 Interactive: false
