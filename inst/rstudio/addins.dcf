@@ -10,5 +10,5 @@ Interactive: false
 
 Name: Run do file
 Description: Runs do file that is active in the RStudio editor
-Binding: addin.view.stata.data
+Binding: addin.run.do.file
 Interactive: false
