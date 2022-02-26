@@ -1,0 +1,14 @@
+Package: RStudioStataConsole
+Type: Package
+Title: RStudio addin that facilitates running Stata in RStudio's termial.
+Version: 0.1.0
+Author: Sebastian Kranz
+Maintainer: Sebastian Kranz <sebastian.kranz@uni-ulm.de>
+Description: If you like to use Stata interactively on a web server (or in a docker container),
+  you could access the Stata console version using a Terminal in an RStudio Server session in
+  the browser. This small packages has three short addins that simplify this process.
+  It is assumed that the Stata is installed and the `stata` command is on the path.
+License: GPL >= 3.0
+Encoding: UTF-8
+LazyData: true
+Depends: rstudioapi, haven

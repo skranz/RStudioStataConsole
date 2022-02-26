@@ -1,0 +1,14 @@
+Name: Start Stata
+Description: Starts Stata in a new Terminal Window
+Binding: addin.start.stata.console
+Interactive: false
+
+Name: View Stata Data
+Description: Views current Stata data set in RStudio
+Binding: addin.view.stata.data
+Interactive: false
+
+Name: Run do file
+Description: Runs a do file that is active in the RStudio editor
+Binding: addin.view.stata.data
+Interactive: false
