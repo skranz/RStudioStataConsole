@@ -12,3 +12,8 @@ Name: Run do file
 Description: Runs do file that is active in the RStudio editor
 Binding: addin.run.do.file
 Interactive: false
+
+Name: Set Stata working directory to source file
+Description: Sets Stata working directory to directory of currently active file in editot
+Binding: addind.set.stata.dir.to.source.file
+Interactive: false

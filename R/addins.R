@@ -1,3 +1,11 @@
+addind.set.stata.dir.to.source.file = function() {
+  doc = rstudioapi::getSourceEditorContext()
+  file = doc$path
+  path = dirname(file)
+  id = terminalVisible()
+  rstudioapi::terminalSend(id,paste0("cd ", path,"\n"))
+}
+
 addin.run.do.file = function() {
   doc = rstudioapi::getSourceEditorContext()
   file = doc$path
