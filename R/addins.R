@@ -4,7 +4,7 @@ addind.set.stata.dir.to.source.file = function() {
   path = dirname(file)
   id = terminalVisible()
   rstudioapi::terminalSend(id,paste0("cd ", path,"\n"))
-}
+}v
 
 addin.run.do.file = function() {
   doc = rstudioapi::getSourceEditorContext()
