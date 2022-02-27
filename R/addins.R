@@ -36,23 +36,22 @@ addin.start.stata.console = function() {
 
 addin.view.stata.data = function() {
   temp.file = tempfile(fileext = ".dta")
-  cmd = paste0("save ", temp.file,"\n")
+  cmd = paste0("save ", temp.file, "\n")
   library(rstudioapi)
-  rstudioapi::terminalSend(terminalVisible(),cmd)
-
+  rstudioapi::terminalSend(terminalVisible(), cmd)
   time.out = 5
   start.time = Sys.time()
-
-  while(TRUE) {
-    if (file.exists(temp.file)) break
-    if (as.numeric(Sys.time()-start.time) > time.out) break
+  while (TRUE) {
+    stata_data = try(haven::read_dta(temp.file),silent = TRUE)
+    if (!is(stata_data,"try-error")) {
+      .GlobalEnv$stata_data = stata_data
+      file.remove(temp.file)
+      View(stata_data)
+      return()
+    }
+    if (as.numeric(Sys.time() - start.time) > time.out)
+      break
   }
-  if (!file.exists(temp.file)) {
-    cat("\n\nTime out after 5 seconds. Your Stata data set seems to large or some other error occured. Call manually in your Stata console save with a filename to write to a .dta file which you can  read from R.")
-    return()
-  }
-  stata_data = haven::read_dta(temp.file)
-  .GlobalEnv$stata_data = stata_data
-  file.remove(temp.file)
-  View(stata_data)
+  cat("\n\nTime out after 5 seconds. Your Stata data set seems to large or some other error occured. Call manually in your Stata console save with a filename to write to a .dta file which you can  read from R.")
+  return()
 }
