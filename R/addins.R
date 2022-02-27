@@ -10,12 +10,18 @@ addin.run.do.file = function() {
   doc = rstudioapi::getSourceEditorContext()
   file = doc$path
   ext = tolower(tools::file_ext(file))
-  if (ext != "do" & ext != "ado") {
-    cat("\nYou have no do file active in your RStudio editor.")
-  }
+  cat("\n",file)
   id = terminalVisible()
+  if (!isTRUE(ext == "do" | ext == "ado")) {
+    cat("\nYou have no do file active in your RStudio editor.")
+    rstudioapi::terminalSend(id,paste0("* You have no do file active in your RStudio editor.\n"))
+    return(invisible())
+  }
+  terminalActivate(id)
   rstudioapi::terminalSend(id,paste0("do ", file,"\n"))
+  return(invisible())
 }
+
 
 addin.start.stata.console = function() {
   library(rstudioapi)
