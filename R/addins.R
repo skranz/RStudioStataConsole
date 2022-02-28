@@ -1,10 +1,19 @@
 addind.set.stata.dir.to.source.file = function() {
+  id = terminalVisible()
+  if (is.null(id)) {
+    cat("\nNo terminal is open. First run
+
+Addins -> Start Stata
+
+to start Stata in a terminal.")
+    return(invisible())
+  }
   doc = rstudioapi::getSourceEditorContext()
   file = doc$path
   path = dirname(file)
-  id = terminalVisible()
+
   rstudioapi::terminalSend(id,paste0("cd ", path,"\n"))
-}v
+}
 
 addin.run.do.file = function() {
   doc = rstudioapi::getSourceEditorContext()
@@ -12,6 +21,14 @@ addin.run.do.file = function() {
   ext = tolower(tools::file_ext(file))
   cat("\n",file)
   id = terminalVisible()
+  if (is.null(id)) {
+    cat("\nNo terminal is open. First run
+
+Addins -> Start Stata
+
+to start Stata in a terminal.")
+    return(invisible())
+  }
   if (!isTRUE(ext == "do" | ext == "ado")) {
     cat("\nYou have no do file active in your RStudio editor.")
     rstudioapi::terminalSend(id,paste0("* You have no do file active in your RStudio editor.\n"))
@@ -41,10 +58,20 @@ addin.start.stata.console = function() {
 }
 
 addin.view.stata.data = function() {
+  id = terminalVisible()
+  if (is.null(id)) {
+    cat("\nNo terminal is open. First run
+
+Addins -> Start Stata
+
+to start Stata in a terminal.")
+    return(invisible())
+  }
+
   temp.file = tempfile(fileext = ".dta")
   cmd = paste0("save ", temp.file, "\n")
   library(rstudioapi)
-  rstudioapi::terminalSend(terminalVisible(), cmd)
+  rstudioapi::terminalSend(id, cmd)
   time.out = 5
   start.time = Sys.time()
   while (TRUE) {
