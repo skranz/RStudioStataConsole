@@ -12,7 +12,7 @@ to start Stata in a terminal.")
   file = doc$path
   path = dirname(file)
 
-  rstudioapi::terminalSend(id,paste0("cd ", path,"\n"))
+  rstudioapi::terminalSend(id,paste0('cd "', path,'"\n'))
 }
 
 addin.run.do.file = function() {
